@@ -11,20 +11,28 @@ class Phrase {
         const phraseSection = document.querySelector("#phrase")
             .firstElementChild;
 
-        console.log(phraseSection);
-
         for (let letter of this.phrase) {
             const letterItem = document.createElement("LI");
             if (letter == " ") {
                 letterItem.className = `space`;
             } else {
                 letterItem.className = `hide letter ${letter}`;
+                letterItem.innerText = letter;
             }
             phraseSection.append(letterItem);
         }
     }
 
-    checkLetter() {}
+    checkLetter(letter) {
+        const regex = new RegExp(`[${letter}]`);
+        return regex.test(this.phrase);
+    }
 
-    showMatchedLetter() {}
+    showMatchedLetter(letter) {
+        const LetterElements = document.querySelectorAll(`.${letter}`);
+        for (let element of LetterElements) {
+            element.classList.remove("hide");
+            element.classList.add("show");
+        }
+    }
 }
