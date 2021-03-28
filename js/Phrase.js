@@ -33,6 +33,8 @@ class Phrase {
         for (let element of LetterElements) {
             element.classList.remove("hide");
             element.classList.add("show");
+            element.classList.add("animate__animated");
+            element.classList.add("animate__flipInY");
         }
     }
 }

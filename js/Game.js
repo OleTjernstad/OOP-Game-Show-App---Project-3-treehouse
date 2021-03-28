@@ -103,11 +103,12 @@ class Game {
         gameOverlay.style.display = "";
         gameOverlay.lastElementChild.focus();
         if (win) {
-            gameOverMessage.innerText = "Congratulations";
+            gameOverMessage.innerText = `Congratulations \n The phrase was: \n`;
             gameOverlay.className = "win";
         } else {
             gameOverMessage.innerText = "Better luck next time";
             gameOverlay.className = "lose";
         }
+        this.resetGame();
     }
 }

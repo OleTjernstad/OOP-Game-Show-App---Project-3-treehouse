@@ -7,7 +7,6 @@ const keyboard = document.querySelector("#qwerty");
 const game = new Game(phrases);
 
 startGame.addEventListener("click", () => {
-    game.resetGame();
     game.startGame();
 });
 
