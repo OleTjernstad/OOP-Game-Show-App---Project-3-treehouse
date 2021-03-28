@@ -27,21 +27,13 @@ class Game {
             key.classList.remove("wrong");
         }
 
-        const scoreboard = document.querySelector("#scoreboard");
+        const deadLives = document.querySelectorAll(".dead");
 
-        scoreboard.firstElementChild.remove();
-        const ol = document.createElement("OL");
-
-        for (let i = 0; i < 5; i++) {
-            const life = document.createElement("LI");
-            life.className = "tries";
-            life.innerHTML =
-                '<img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30">';
-
-            ol.appendChild(life);
+        for (const live of deadLives) {
+            live.classList.remove("dead");
+            live.classList.remove("animate__swing");
+            live.classList.add("alive");
         }
-
-        scoreboard.appendChild(ol);
     }
 
     getRandomPhrase() {
@@ -87,9 +79,13 @@ class Game {
             this.gameOver(false);
             return;
         }
-        document
-            .querySelector("#scoreboard")
-            .firstElementChild.lastElementChild.remove();
+        const heart = document.querySelector(".alive");
+        heart.classList.add("dead");
+        heart.classList.add("animate__animated");
+        heart.classList.add("animate__swing");
+        heart.classList.remove("alive");
+
+        document.querySelector("#number-of-lives").innerText = 5 - this.missed;
     }
 
     checkForWin() {
@@ -103,7 +99,7 @@ class Game {
         gameOverlay.style.display = "";
         gameOverlay.lastElementChild.focus();
         if (win) {
-            gameOverMessage.innerText = `Congratulations \n The phrase was: \n`;
+            gameOverMessage.innerText = `Congratulations \n The phrase was: \n ${this.activePhrase.phrase}`;
             gameOverlay.className = "win";
         } else {
             gameOverMessage.innerText = "Better luck next time";
