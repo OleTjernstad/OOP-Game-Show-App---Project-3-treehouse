@@ -19,19 +19,27 @@ class Game {
         phraseSection.firstElementChild.remove();
         phraseSection.innerHTML = "<ul></ul>";
 
-        const keyboardKeys = document.querySelector(".key");
+        const keyboardKeys = document.querySelectorAll(".key");
         for (let key of keyboardKeys) {
             key.classList.remove("chosen");
             key.classList.remove("wrong");
         }
 
-        document.querySelector(".scoreboard").innerHTML = `<ol>
-					<li class="tries"><img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30"></li>
-					<li class="tries"><img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30"></li>
-					<li class="tries"><img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30"></li>
-					<li class="tries"><img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30"></li>
-					<li class="tries"><img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30"></li>
-				</ol>`;
+        const scoreboard = document.querySelector("#scoreboard");
+
+        scoreboard.firstElementChild.remove();
+        const ol = document.createElement("OL");
+
+        for (let i = 0; i < 5; i++) {
+            const life = document.createElement("LI");
+            life.className = "tries";
+            life.innerHTML =
+                '<img src="images/liveHeart.png" alt="Heart Icon" height="35" width="30">';
+
+            ol.appendChild(life);
+        }
+
+        scoreboard.appendChild(ol);
     }
 
     getRandomPhrase() {
