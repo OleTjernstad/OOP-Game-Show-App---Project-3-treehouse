@@ -99,7 +99,10 @@ class Game {
         gameOverlay.style.display = "";
         gameOverlay.lastElementChild.focus();
         if (win) {
-            gameOverMessage.innerText = `Congratulations \n The phrase was: \n ${this.activePhrase.phrase}`;
+            gameOverMessage.innerText = `Congratulations \n The phrase was: "${
+                this.activePhrase.phrase.charAt(0).toUpperCase() +
+                this.activePhrase.phrase.slice(1)
+            }"`;
             gameOverlay.className = "win";
         } else {
             gameOverMessage.innerText = "Better luck next time";

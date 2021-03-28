@@ -6,3 +6,5 @@
 -   Made lives hearts to css classes
 -   Made a number of lives counter
 -   Added animation to the hearts
+-   Adjusted background color on start, lose, and win screen. Made the start background yellow because I made this project at Easter
+-   Changed color for chosen key color and phrase letters shown
