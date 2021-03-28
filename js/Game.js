@@ -50,6 +50,7 @@ class Game {
     }
 
     handleInteraction(letterElement) {
+        console.log(letterElement);
         if (this.activePhrase.checkLetter(letterElement.innerText)) {
             letterElement.classList.add("chosen");
             this.activePhrase.showMatchedLetter(letterElement.innerText);
@@ -59,6 +60,21 @@ class Game {
         } else {
             letterElement.classList.add("wrong");
             this.removeLife();
+        }
+    }
+
+    handleInteractionFromKeyboard(PressedKey) {
+        console.log(PressedKey);
+        const regex = /[a-z]/;
+        if (regex.test(PressedKey)) {
+            const keys = document
+                .querySelector("#qwerty")
+                .querySelectorAll(".key");
+            for (const key of keys) {
+                if (key.innerText == PressedKey) {
+                    this.handleInteraction(key);
+                }
+            }
         }
     }
 

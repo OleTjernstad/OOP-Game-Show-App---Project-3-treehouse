@@ -16,3 +16,7 @@ keyboard.addEventListener("click", (event) => {
         game.handleInteraction(event.target);
     }
 });
+
+document.addEventListener("keydown", (event) =>
+    game.handleInteractionFromKeyboard(event.key)
+);
