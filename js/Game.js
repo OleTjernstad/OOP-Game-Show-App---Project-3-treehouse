@@ -19,6 +19,8 @@ class Game {
         phraseSection.firstElementChild.remove();
         phraseSection.innerHTML = "<ul></ul>";
 
+        this.missed = 0;
+
         const keyboardKeys = document.querySelectorAll(".key");
         for (let key of keyboardKeys) {
             key.classList.remove("chosen");
@@ -46,11 +48,13 @@ class Game {
         const randomKey = Math.floor(Math.random() * this.phrases.length);
         this.activePhrase = this.phrases[randomKey];
         this.activePhrase.addPhraseToDisplay();
-        console.log(this.activePhrase);
     }
 
     handleInteraction(letterElement) {
-        console.log(letterElement);
+        const regex = /(chosen|wrong)/;
+        if (regex.test(letterElement.className)) {
+            return;
+        }
         if (this.activePhrase.checkLetter(letterElement.innerText)) {
             letterElement.classList.add("chosen");
             this.activePhrase.showMatchedLetter(letterElement.innerText);
@@ -64,7 +68,6 @@ class Game {
     }
 
     handleInteractionFromKeyboard(PressedKey) {
-        console.log(PressedKey);
         const regex = /[a-z]/;
         if (regex.test(PressedKey)) {
             const keys = document
@@ -80,10 +83,13 @@ class Game {
 
     removeLife() {
         this.missed += 1;
+        if (this.missed >= 5) {
+            this.gameOver(false);
+            return;
+        }
         document
             .querySelector("#scoreboard")
             .firstElementChild.lastElementChild.remove();
-        if (this.missed === 5) this.gameOver(false);
     }
 
     checkForWin() {
@@ -94,7 +100,8 @@ class Game {
     gameOver(win) {
         const gameOverlay = document.querySelector("#overlay");
         const gameOverMessage = document.querySelector("#game-over-message");
-        gameOverlay.style.display = "block";
+        gameOverlay.style.display = "";
+        gameOverlay.lastElementChild.focus();
         if (win) {
             gameOverMessage.innerText = "Congratulations";
             gameOverlay.className = "win";
