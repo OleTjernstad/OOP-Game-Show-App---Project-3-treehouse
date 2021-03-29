@@ -1,7 +1,9 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Game.js */
-
+/**
+ * Game class
+ */
 class Game {
     constructor(phrases) {
         this.phrases = phrases;
@@ -9,11 +11,17 @@ class Game {
         this.activePhrase = null;
     }
 
+    /**
+     * Start the game, remove overlay and get random phrase
+     */
     startGame() {
         document.querySelector("#overlay").style.display = "none";
         this.getRandomPhrase();
     }
 
+    /**
+     * Reset the game after is finish
+     */
     resetGame() {
         const phraseSection = document.querySelector("#phrase");
         phraseSection.firstElementChild.remove();
@@ -36,12 +44,21 @@ class Game {
         }
     }
 
+    /**
+     * Get random phrase to play
+     */
     getRandomPhrase() {
         const randomKey = Math.floor(Math.random() * this.phrases.length);
         this.activePhrase = this.phrases[randomKey];
         this.activePhrase.addPhraseToDisplay();
     }
 
+    /**
+     * Handle interaction and check letter if not tested.
+     *
+     * @param {HTMLElement} letterElement
+     * @returns
+     */
     handleInteraction(letterElement) {
         const regex = /(chosen|wrong)/;
         if (regex.test(letterElement.className)) {
