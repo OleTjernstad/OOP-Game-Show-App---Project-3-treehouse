@@ -1,3 +1,6 @@
+/**
+ * Array of possible phrases as Phrase classes
+ */
 const phrases = [
     new Phrase("Wild goose chase"),
     new Phrase("Pure as the driven snow"),

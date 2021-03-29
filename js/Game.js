@@ -29,6 +29,8 @@ class Game {
 
         this.missed = 0;
 
+        document.querySelector("#number-of-lives").innerText = 5;
+
         const keyboardKeys = document.querySelectorAll(".key");
         for (let key of keyboardKeys) {
             key.classList.remove("chosen");
@@ -56,7 +58,7 @@ class Game {
     /**
      * Handle interaction and check letter if not tested.
      *
-     * @param {HTMLElement} letterElement
+     * @param {HTMLElement} letterElement The element that received the click event
      * @returns
      */
     handleInteraction(letterElement) {
@@ -76,6 +78,11 @@ class Game {
         }
     }
 
+    /**
+     * Handle interaction from keyboard event. and filter to react on only letter key a - z
+     *
+     * @param {string} PressedKey The key property from the pressed key
+     */
     handleInteractionFromKeyboard(PressedKey) {
         const regex = /[a-z]/;
         if (regex.test(PressedKey)) {
@@ -90,6 +97,10 @@ class Game {
         }
     }
 
+    /**
+     * Make a blue heart grey and increment missed property, and print number og remaining lives
+     * @returns
+     */
     removeLife() {
         this.missed += 1;
         if (this.missed >= 5) {
@@ -105,11 +116,23 @@ class Game {
         document.querySelector("#number-of-lives").innerText = 5 - this.missed;
     }
 
+    /**
+     * Check if user has guessed all letters
+     *
+     * @returns boolean true if all letters is correct shown
+     */
     checkForWin() {
         const hiddenLetters = document.querySelectorAll(".hide");
         if (hiddenLetters.length === 0) return true;
+
+        return false;
     }
 
+    /**
+     *  Function to run when game is finished, show the overlay, set ether win or lose message, call reset game
+     *
+     * @param {boolean} win true if use has guessed all letters
+     */
     gameOver(win) {
         const gameOverlay = document.querySelector("#overlay");
         const gameOverMessage = document.querySelector("#game-over-message");
