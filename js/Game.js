@@ -111,6 +111,9 @@ class Game {
     removeLife() {
         this.missed += 1;
 
+        /**
+         * Look fore the first live with the class .alive and remove that class to prepare to remove the next live
+         */
         const heart = document.querySelector(".alive");
         heart.firstElementChild.src = "images/lostHeart.png";
         heart.classList.add("animate__swing");

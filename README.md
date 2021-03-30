@@ -3,6 +3,7 @@
 ## HTML and style adjustments
 
 -   Updated the provided animation library and added flip animation to the phrase
+-   Made the letter boxes look like eggs, and flip the egg pointing the other direction when relived
 -   Made a number of lives counter
 -   Added animation to the hearts
 -   Adjusted background color on start, lose, and win screen. Made the start background yellow because I made this project at Easter
