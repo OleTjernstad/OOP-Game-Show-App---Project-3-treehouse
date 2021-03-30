@@ -16,7 +16,8 @@ class Game {
      */
     startGame() {
         document.querySelector("#overlay").style.display = "none";
-        this.getRandomPhrase();
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     }
 
     /**
@@ -47,12 +48,13 @@ class Game {
     }
 
     /**
-     * Get random phrase to play
+     * Get random phrase and returns the phrase
+     *
+     * @returns string Random Phrase
      */
     getRandomPhrase() {
         const randomKey = Math.floor(Math.random() * this.phrases.length);
-        this.activePhrase = this.phrases[randomKey];
-        this.activePhrase.addPhraseToDisplay();
+        return this.phrases[randomKey];
     }
 
     /**
