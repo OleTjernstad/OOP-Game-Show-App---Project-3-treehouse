@@ -101,7 +101,10 @@ button {
     margin-right: 2px;
     color: transparent;
     background: var(--color-neutral-light);
-    border-radius: 5px;
+}
+.hide {
+    border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+    transform: rotate(-90deg);
 }
 
 .space {
@@ -116,9 +119,7 @@ button {
     width: 65px;
     padding: 20px 1px 0 1px;
     margin-right: 2px;
-    border-radius: 5px;
-    -webkit-animation-duration: 0.5s;
-    animation-duration: 0.5s;
+    border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
 }
 
 /* Keyboard */
@@ -205,18 +206,4 @@ button {
 .tries {
     width: 44px;
     height: 44px;
-}
-
-.alive {
-    background-image: url("file:///C:/treehouse/OOP-Game-Show-App---Project-3-treehouse/images/liveHeart.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.dead {
-    background-image: url("file:///C:/treehouse/OOP-Game-Show-App---Project-3-treehouse/images/lostHeart.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
 }

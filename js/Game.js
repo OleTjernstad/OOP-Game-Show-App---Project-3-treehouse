@@ -29,6 +29,7 @@ class Game {
         phraseSection.innerHTML = "<ul></ul>";
 
         this.missed = 0;
+        this.activePhrase = null;
 
         document.querySelector("#number-of-lives").innerText = 5;
 
@@ -38,10 +39,10 @@ class Game {
             key.classList.remove("wrong");
         }
 
-        const deadLives = document.querySelectorAll(".dead");
+        const AllTries = document.querySelectorAll(".tries");
 
-        for (const live of deadLives) {
-            live.classList.remove("dead");
+        for (const live of AllTries) {
+            live.firstElementChild.src = "images/liveHeart.png";
             live.classList.remove("animate__swing");
             live.classList.add("alive");
         }
@@ -81,11 +82,15 @@ class Game {
     }
 
     /**
-     * Handle interaction from keyboard event. and filter to react on only letter key a - z
+     * Handle interaction from keyboard event. and filter to react on only letter key a - z, abort if active phrase is null
      *
      * @param {string} PressedKey The key property from the pressed key
      */
     handleInteractionFromKeyboard(PressedKey) {
+        if (this.activePhrase == null) {
+            return;
+        }
+
         const regex = /[a-z]/;
         if (regex.test(PressedKey)) {
             const keys = document
@@ -105,17 +110,17 @@ class Game {
      */
     removeLife() {
         this.missed += 1;
-        if (this.missed >= 5) {
-            this.gameOver(false);
-            return;
-        }
+
         const heart = document.querySelector(".alive");
-        heart.classList.add("dead");
-        heart.classList.add("animate__animated");
+        heart.firstElementChild.src = "images/lostHeart.png";
         heart.classList.add("animate__swing");
         heart.classList.remove("alive");
 
         document.querySelector("#number-of-lives").innerText = 5 - this.missed;
+
+        if (this.missed >= 5) {
+            this.gameOver(false);
+        }
     }
 
     /**
